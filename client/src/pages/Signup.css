@@ -1,0 +1,51 @@
+/* Signup.css */
+.signup-container {
+  max-width: 100vh;
+  margin: 0 auto;
+  padding: 2vh;
+  border: 0.2vh solid #ccc;
+  border-radius: 1vh;
+  background-color: #f9f9f9;
+  margin-top: 20vh;
+}
+
+.signup-title {
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center the content horizontally */
+  padding: 1vh;
+}
+
+.separator {
+  height: 0.2vh;
+  background-color: #ccc; /* Color of the separator */
+  margin: 2vh 0; /* Margin to add space above and below the separator */
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form label {
+  margin-bottom: 1vh;
+}
+
+.signup-form input {
+  padding: 1.5vh;
+  margin-bottom: 2vh;
+  border: 0.2vh solid #ccc;
+  border-radius: 2vh;
+}
+
+.signup-form button {
+  padding: 1.5vh;
+  border: none;
+  border-radius: 2vh;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.signup-form button:hover {
+  background-color: #0056b3;
+}

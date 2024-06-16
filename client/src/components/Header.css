@@ -1,0 +1,42 @@
+.size-6 {
+  width: 4vh;
+  height: 4vh;
+  /* Additional styles specific to your SVG icon */
+}
+
+.wrap, .left-section, .right-section, .middle-section{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5vh;
+  margin: 1vh;   
+}
+
+.right-section {
+  border: 0.2vh solid #ccc;
+  border-radius: 2vh;
+  padding: 1vh;
+}
+
+.middle-section {
+  padding-right: 7vh;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 3vh;
+  top: 10vh;
+  background-color: white;
+  border: 0.2vh solid #ccc;
+  border-radius: 2vh;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}

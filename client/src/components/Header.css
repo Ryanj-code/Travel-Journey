@@ -4,12 +4,23 @@
   /* Additional styles specific to your SVG icon */
 }
 
-.wrap, .left-section, .right-section, .middle-section{
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(27, 27, 27);
+  color: white;
+  padding: 0 2vh;
+}
+
+.left-section,
+.right-section,
+.middle-section {
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.5vh;
-  margin: 1vh;   
+  gap: 1vh;
+  margin: 1vh;
 }
 
 .right-section {
@@ -26,7 +37,8 @@
   position: absolute;
   right: 3vh;
   top: 10vh;
-  background-color: white;
+  background-color: rgb(27, 27, 27);
+  color: white;
   border: 0.2vh solid #ccc;
   border-radius: 2vh;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -38,5 +50,7 @@
 }
 
 .dropdown-item:hover {
-  background-color: #f0f0f0;
+  /*background-color: #979797;*/
+  opacity: 0.5;
+  border-radius: 2vh;
 }

@@ -1,0 +1,52 @@
+/* Form.css */
+.form-container {
+  max-width: 100vh;
+  margin: 0 auto;
+  padding: 2vh;
+  border: 0.2vh solid #ccc;
+  border-radius: 1vh;
+  background-color: #f9f9f9;
+  margin-top: 20vh;
+}
+
+.form-title {
+  display: flex;
+  justify-content: center;
+  padding: 1vh;
+  margin-bottom: 1vh;
+}
+
+.separator {
+  height: 0.2vh;
+  background-color: #ccc; /* Color of the separator */
+  margin: 2vh 0;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-fields label {
+  margin-bottom: 1vh;
+}
+
+.form-fields input {
+  padding: 1.5vh;
+  margin-bottom: 2vh;
+  border: 0.2vh solid #ccc;
+  border-radius: 2vh;
+}
+
+.form-fields button {
+  padding: 1.5vh;
+  border: none;
+  border-radius: 2vh;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.form-fields button:hover {
+  background-color: #0056b3;
+}

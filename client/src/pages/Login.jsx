@@ -2,7 +2,8 @@ import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom"; // Import Navigate from React Router
 import { UserContext } from "../UserContext";
 import axios from "axios";
-import "./Login.css";
+//import "./Login.css";
+import "./Form.css";
 
 const Login = () => {
   const [data, setData] = useState({
@@ -36,10 +37,10 @@ const Login = () => {
   }
 
   return (
-    <div className="login-container">
-      <div className="login-title">Login</div>
+    <div className="form-container">
+      <div className="form-title">Login</div>
       <div className="separator"></div>
-      <form className="login-form" onSubmit={handleLogin}>
+      <form className="form-fields" onSubmit={handleLogin}>
         <input
           type="email"
           name="email"

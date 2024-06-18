@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-import "./Signup.css";
+import "./Form.css";
+//import "./Signup.css";
 
 const Signup = () => {
   const [data, setData] = useState({
@@ -29,10 +30,10 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-container">
-      <div className="signup-title">Sign Up</div>
+    <div className="form-container">
+      <div className="form-title">Sign Up</div>
       <div className="separator"></div>
-      <form className="signup-form" onSubmit={handleSignup}>
+      <form className="form-fields" onSubmit={handleSignup}>
         <input
           type="text"
           name="name"

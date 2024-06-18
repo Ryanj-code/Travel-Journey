@@ -1,28 +1,30 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../UserContext";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Header.css"; // Import your CSS file
 
 const Header = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleNavigation = async (target) => {
     switch (target) {
       case "home":
-        window.location.href = "/";
+        navigate("/");
         break;
       case "login":
-        window.location.href = "/login";
+        navigate("/login");
         break;
       case "signup":
-        window.location.href = "/signup";
+        navigate("/signup");
         break;
       case "logout":
         try {
           await axios.post("/logout"); // Assuming you have a logout route on your server
           setUser(null); // Clear user data after logout
-          window.location.href = "/"; // Redirect to home after logout
+          navigate("/"); // Redirect to home after logout
         } catch (err) {
           console.error("Logout failed:", err);
         }
@@ -37,7 +39,7 @@ const Header = () => {
   };
 
   return (
-    <div className="wrap">
+    <div className="header">
       <div className="left-section" onClick={() => handleNavigation("home")}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +51,7 @@ const Header = () => {
         </svg>
         Travel Log
       </div>
-      <div className="middle-section">Logs</div>
+      <div className="middle-section"></div>
       <div className="right-section" onClick={toggleDropdown}>
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -1,0 +1,14 @@
+.home {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.scaled-image {
+  max-width: 35%; /* Ensure the image doesn't exceed its parent's width */
+  height: auto; /* Maintain aspect ratio */
+}

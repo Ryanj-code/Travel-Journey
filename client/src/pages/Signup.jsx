@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import "./Signup.css";
 
@@ -16,15 +16,16 @@ const Signup = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    console.log(data);
-    /* try {
-      const res = await axios.post("http://localhost:5000/signup", data);
+    console.log("User sign up: ", data);
+
+    try {
+      const res = await axios.post("/signup", data);
       setMessage("Sign up successful!");
       console.log(res.data);
     } catch (err) {
-      console.error(err);
       setMessage("Sign up failed. Please try again.");
-    } */
+      console.error(err);
+    }
   };
 
   return (

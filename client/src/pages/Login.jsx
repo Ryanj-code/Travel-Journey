@@ -1,5 +1,7 @@
-// LoginForm.js
-import React, { useState } from "react";
+import { useContext, useState } from "react";
+import { Navigate } from "react-router-dom"; // Import Navigate from React Router
+import { UserContext } from "../UserContext";
+import axios from "axios";
 import "./Login.css";
 
 const Login = () => {
@@ -7,16 +9,31 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [redirect, setRedirect] = useState(false);
+  const { setUser } = useContext(UserContext);
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Add login logic here, such as calling an API or checking credentials
-    console.log("Logging in with:", { data });
+    console.log("Log in with: ", data);
+
+    try {
+      const res = await axios.post("/login", data);
+      setUser(res.data);
+      console.log("Login successful.");
+      setRedirect(true);
+    } catch (err) {
+      console.log("Login Failed.");
+      console.log(e);
+    }
   };
+
+  if (redirect) {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <div className="login-container">
@@ -25,19 +42,19 @@ const Login = () => {
       <form className="login-form" onSubmit={handleLogin}>
         <input
           type="email"
+          name="email"
           value={data.email}
           placeholder="Email"
           onChange={handleChange}
           required
-          autoComplete="email"
         />
         <input
           type="password"
+          name="password"
           value={data.password}
           placeholder="Password"
           onChange={handleChange}
           required
-          autoComplete="new-password"
         />
         <button type="submit">Login</button>
       </form>

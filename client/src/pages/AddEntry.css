@@ -1,0 +1,61 @@
+.add-entry {
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.entry-container {
+  width: 100%;
+  max-width: 150vh;
+  padding: 1vh;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 4vh;
+  margin-bottom: 1vh;
+  text-align: center;
+}
+
+.entry-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1vh;
+  padding: 2vh;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 1vh;
+  border-radius: 1vh;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  justify-self: center; /* Center the form fields horizontally */
+  resize: none; /* Disable textarea resizing */
+}
+
+.submit-button {
+  background-color: #007bff;
+  width: 100%;
+  color: #fff;
+  border: none;
+  padding: 1.5vh;
+  border-radius: 1vh;
+  margin-top: 2vh;
+  cursor: pointer;
+  justify-self: center; /* Center the button horizontally */
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}

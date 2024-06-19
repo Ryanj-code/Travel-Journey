@@ -1,8 +1,7 @@
-import { useContext, useState } from "react";
-import { Navigate } from "react-router-dom"; // Import Navigate from React Router
+import { useContext, useEffect, useState } from "react";
+import { Link, Navigate } from "react-router-dom"; // Import Navigate from React Router
 import { UserContext } from "../UserContext";
 import axios from "axios";
-//import "./Login.css";
 import "./Form.css";
 
 const Login = () => {
@@ -11,7 +10,13 @@ const Login = () => {
     password: "",
   });
   const [redirect, setRedirect] = useState(false);
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+
+  useEffect(() => {
+    if (user) {
+      setRedirect(true); // Redirect if user is already logged in
+    }
+  }, [user]);
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -27,13 +32,12 @@ const Login = () => {
       console.log("Login successful.");
       setRedirect(true);
     } catch (err) {
-      console.log("Login Failed.");
-      console.log(e);
+      console.log("Login Failed.", err);
     }
   };
 
   if (redirect) {
-    return <Navigate to={"/"} />;
+    return <Navigate to={"/journal"} />;
   }
 
   return (
@@ -59,6 +63,12 @@ const Login = () => {
         />
         <button type="submit">Login</button>
       </form>
+      <div className="options-container">
+        <div className="options-item">Don't have an account?</div>
+        <Link to="/signup" className="options-item">
+          Sign up here
+        </Link>
+      </div>
     </div>
   );
 };

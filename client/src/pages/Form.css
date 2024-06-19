@@ -1,9 +1,10 @@
-/* Form.css */
+/* Css for Login/Signup */
 .form-container {
+  font-size: 3vh;
+  color: black;
   max-width: 100vh;
-  margin: 0 auto;
+  margin: auto;
   padding: 2vh;
-  border: 0.2vh solid #ccc;
   border-radius: 1vh;
   background-color: #f9f9f9;
   margin-top: 20vh;
@@ -39,6 +40,7 @@
 }
 
 .form-fields button {
+  font-size: 2.5vh;
   padding: 1.5vh;
   border: none;
   border-radius: 2vh;
@@ -49,4 +51,12 @@
 
 .form-fields button:hover {
   background-color: #0056b3;
+}
+
+.options-container {
+  font-size: 2vh;
+  display: flex;
+  justify-content: center;
+  padding: 1vh;
+  gap: 0.5vh;
 }

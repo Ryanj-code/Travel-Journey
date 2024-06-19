@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import "./Form.css";
-//import "./Signup.css";
+import { UserContext } from "../UserContext";
+import { Link, Navigate } from "react-router-dom";
 
 const Signup = () => {
   const [data, setData] = useState({
@@ -10,6 +11,14 @@ const Signup = () => {
     password: "",
   });
   const [message, setMessage] = useState("");
+  const [redirect, setRedirect] = useState(false);
+  const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    if (user) {
+      setRedirect(true);
+    }
+  }, [user]);
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -22,12 +31,17 @@ const Signup = () => {
     try {
       const res = await axios.post("/signup", data);
       setMessage("Sign up successful!");
+      setRedirect(true);
       console.log(res.data);
     } catch (err) {
       setMessage("Sign up failed. Please try again.");
       console.error(err);
     }
   };
+
+  if (redirect) {
+    return <Navigate to={"/journal"} />;
+  }
 
   return (
     <div className="form-container">
@@ -61,6 +75,12 @@ const Signup = () => {
         <button type="submit">Sign Up</button>
       </form>
       {message && <div className="message">{message}</div>}
+      <div className="options-container">
+        <div className="options-item">Have an account?</div>
+        <Link to="/login" className="options-item">
+          Login here
+        </Link>
+      </div>
     </div>
   );
 };

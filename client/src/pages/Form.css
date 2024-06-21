@@ -1,13 +1,33 @@
 /* Css for Login/Signup */
-.form-container {
+.form-wrapper {
+  background-image: url("./src/assets/wood_bg.png");
+  background-repeat: no-repeat;
+  background-size: cover; /* Ensures the background image covers the entire container */
+  min-height: 100vh; /* Makes sure the container covers the full viewport height */
+}
+
+.form-container-login {
   font-size: 3vh;
-  color: black;
+  color: white;
   max-width: 100vh;
   margin: auto;
   padding: 2vh;
   border-radius: 1vh;
-  background-color: #f9f9f9;
-  margin-top: 20vh;
+  background-color: transparent;
+  -ms-transform: translateY(70%);
+  transform: translateY(70%);
+}
+
+.form-container-signup {
+  font-size: 3vh;
+  color: white;
+  max-width: 100vh;
+  margin: auto;
+  padding: 2vh;
+  border-radius: 1vh;
+  background-color: transparent;
+  -ms-transform: translateY(60%);
+  transform: translateY(60%);
 }
 
 .form-title {
@@ -15,12 +35,6 @@
   justify-content: center;
   padding: 1vh;
   margin-bottom: 1vh;
-}
-
-.separator {
-  height: 0.2vh;
-  background-color: #ccc; /* Color of the separator */
-  margin: 2vh 0;
 }
 
 .form-fields {
@@ -32,11 +46,14 @@
   margin-bottom: 1vh;
 }
 
-.form-fields input {
+.form-fields input[type="text"],
+.form-fields input[type="email"],
+.form-fields input[type="password"] {
   padding: 1.5vh;
   margin-bottom: 2vh;
   border: 0.2vh solid #ccc;
   border-radius: 2vh;
+  box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
 }
 
 .form-fields button {

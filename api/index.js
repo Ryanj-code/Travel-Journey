@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const { default: mongoose } = require("mongoose");
+// const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("./models/User.js");
@@ -34,8 +35,27 @@ app.post("/signup", async (req, res) => {
       email,
       password: bcrypt.hashSync(password, bcryptSalt),
     });
-
-    res.status(201).json(userDoc);
+    // Creates user in db
+    // then signs a token with the info
+    jwt.sign(
+      {
+        email: userDoc.email,
+        id: userDoc._id,
+      },
+      jwtSecret,
+      {},
+      (err, token) => {
+        if (err) throw err;
+        res
+          .cookie("token", token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "strict",
+          })
+          .status(201)
+          .json(userDoc);
+      }
+    );
   } catch (err) {
     console.error("Error creating user:", err);
     res.status(422).json({ error: err.message });
@@ -60,7 +80,13 @@ app.post("/login", async (req, res) => {
           {}, // options(empty)
           (err, token) => {
             if (err) throw err;
-            res.cookie("token", token).json(userDoc);
+            res
+              .cookie("token", token, {
+                httpOnly: true,
+                secure: true,
+                sameSite: "strict",
+              })
+              .json(userDoc);
           } // callback function
         );
       } else {

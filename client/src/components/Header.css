@@ -5,12 +5,16 @@
 }
 
 .header {
+  position: fixed;
   font-size: 2.5vh;
   display: flex;
   justify-content: space-between;
   background-color: rgb(27, 27, 27);
   color: white;
   padding: 0 2vh;
+  right: 0;
+  left: 0;
+  z-index: 1000; /* Ensure the header is above other content */
 }
 
 .left-section,

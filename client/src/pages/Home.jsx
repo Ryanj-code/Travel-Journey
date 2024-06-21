@@ -20,15 +20,29 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
-      <div>
+    <div>
+      <div className="home-container">
         <button onClick={handleStart}>
           <h1>Start your log</h1>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="size-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
+            />
+          </svg>
         </button>
 
-        {user && <div className="user-name">{user.name}</div>}
+        {/* {user && <div className="user-name">{user.name}</div>} */}
+        <img src={travelImage} alt="travel-image" className="scaled-image" />
       </div>
-      <img src={travelImage} alt="travel-image" className="scaled-image" />
     </div>
   );
 };

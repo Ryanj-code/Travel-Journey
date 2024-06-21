@@ -1,5 +1,5 @@
 .add-entry {
-  min-height: 90vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,24 +7,45 @@
 
 .entry-container {
   width: 100%;
-  max-width: 150vh;
-  padding: 1vh;
+  max-width: 80rem; /* Adjust the max-width as needed */
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-  font-size: 4vh;
+  font-size: 3vh;
   margin-bottom: 1vh;
   text-align: center;
 }
 
 .entry-form {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   grid-gap: 1vh;
   padding: 2vh;
+}
+
+.photo-inputs {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Adjust the gap between inputs */
+  margin-top: 2vh;
+}
+
+.photo-inputs {
+  display: flex;
+  align-items: center;
+}
+
+.photo-inputs input[type="text"] {
+  flex: 1; /* Grow to fill available space */
+  max-width: 100%; /* Set a maximum width for the file input */
+}
+
+.photo-inputs label {
+  display: inline-block; /* Ensure labels stay on one line */
+  white-space: nowrap; /* Prevent label text from wrapping */
 }
 
 label {
@@ -44,10 +65,23 @@ textarea {
   resize: none; /* Disable textarea resizing */
 }
 
+.upload-label {
+  font-weight: normal;
+  padding: 1vh;
+  background-color: #007bff;
+  color: black;
+  border-radius: 1vh;
+  cursor: pointer;
+}
+
+.upload-input {
+  display: none;
+} /* Hide upload input (upload files button)*/
+
 .submit-button {
   background-color: #007bff;
+  font-size: 2.5vh;
   width: 100%;
-  color: #fff;
   border: none;
   padding: 1.5vh;
   border-radius: 1vh;
@@ -58,4 +92,24 @@ textarea {
 
 .submit-button:hover {
   background-color: #0056b3;
+}
+
+.icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem; /* Adjust the width as needed */
+  height: 2rem; /* Adjust the height as needed */
+  background-color: #007bff; /* Adjust the background color */
+  border-radius: 50%; /* Makes the link circular */
+  margin-right: 1rem; /* Adjust margin as needed */
+}
+
+.icon-link:hover {
+  background-color: #0056b3; /* Adjust hover color */
+}
+
+.size-6 back {
+  width: 100%;
+  height: 100%;
 }

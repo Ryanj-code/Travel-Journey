@@ -1,11 +1,23 @@
-.home {
+.home-container {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   position: absolute;
+  margin: auto;
   top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  -ms-transform: translateY(-40%);
+  transform: translateY(-40%);
+}
+
+.home-container button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 2vh;
+  border: none;
+  cursor: pointer;
+  gap: 1vh;
 }
 
 .scaled-image {

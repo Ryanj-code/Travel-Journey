@@ -10,9 +10,8 @@ const Signup = () => {
     email: "",
     password: "",
   });
-  const [message, setMessage] = useState("");
   const [redirect, setRedirect] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     if (user) {
@@ -30,12 +29,11 @@ const Signup = () => {
 
     try {
       const res = await axios.post("/signup", data);
-      setMessage("Sign up successful!");
+      setUser(res.data);
       setRedirect(true);
-      console.log(res.data);
+      console.log("Sign up successful.");
     } catch (err) {
-      setMessage("Sign up failed. Please try again.");
-      console.error(err);
+      console.error("Login failed", err);
     }
   };
 
@@ -44,42 +42,42 @@ const Signup = () => {
   }
 
   return (
-    <div className="form-container">
-      <div className="form-title">Sign Up</div>
-      <div className="separator"></div>
-      <form className="form-fields" onSubmit={handleSignup}>
-        <input
-          type="text"
-          name="name"
-          value={data.name}
-          placeholder="Username"
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          value={data.email}
-          placeholder="Email"
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          value={data.password}
-          placeholder="Password"
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Sign Up</button>
-      </form>
-      {message && <div className="message">{message}</div>}
-      <div className="options-container">
-        <div className="options-item">Have an account?</div>
-        <Link to="/login" className="options-item">
-          Login here
-        </Link>
+    <div className="form-wrapper">
+      <div className="form-container-signup">
+        <div className="form-title">Let's create your account</div>
+        <form className="form-fields" onSubmit={handleSignup}>
+          <input
+            type="text"
+            name="name"
+            value={data.name}
+            placeholder="Username"
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            value={data.email}
+            placeholder="Email"
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            value={data.password}
+            placeholder="Password"
+            onChange={handleChange}
+            required
+          />
+          <button type="submit">Sign Up</button>
+        </form>
+        <div className="options-container">
+          <div className="options-item">Have an account?</div>
+          <Link to="/login" className="options-item">
+            Login here
+          </Link>
+        </div>
       </div>
     </div>
   );

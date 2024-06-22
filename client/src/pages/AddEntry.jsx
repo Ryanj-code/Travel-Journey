@@ -11,16 +11,14 @@ const AddEntry = () => {
     entry: "",
     photoFile: null, // For file uploads
     photoURL: "", // For linking photos
-    email: "",
+    userID: "",
   });
   const [redirect, setRedirect] = useState(false);
   const { user } = useContext(UserContext);
 
   useEffect(() => {
     if (user) {
-      setFormData({ ...formData, email: user.email });
-    } else {
-      setRedirect(true);
+      setFormData({ ...formData, userID: user.id });
     }
   }, [user]);
 
@@ -41,6 +39,7 @@ const AddEntry = () => {
     console.log(formData);
     try {
       const res = await axios.post("/addentry", formData);
+      setRedirect(true);
       console.log("Entry added:", res.data);
     } catch (err) {
       console.log(err);

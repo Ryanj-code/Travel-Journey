@@ -1,23 +1,27 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Journal.css";
+import { UserContext } from "../UserContext";
+import axios from "axios";
 
 const Journal = () => {
-  // Sample data for user entries (temporary)
-  const [entries, setEntries] = useState([
-    {
-      id: 1,
-      title: "Entry 1",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      id: 2,
-      title: "Entry 2",
-      content:
-        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
-    },
-    // Add more entries as needed
-  ]);
+  const [entries, setEntries] = useState([]);
+  const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    if (user) {
+      handleDisplay(user.id);
+    }
+  }, [user]);
+
+  const handleDisplay = async (userID) => {
+    try {
+      const res = await axios.get("/getentries", { params: { userID } });
+      setEntries(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="journal">
@@ -27,9 +31,9 @@ const Journal = () => {
         <h2>Your Entries</h2>
         <ul>
           {entries.map((entry) => (
-            <li key={entry.id}>
-              <h3>{entry.title}</h3>
-              <p>{entry.content}</p>
+            <li key={entry.date}>
+              <h3>{entry.location}</h3>
+              <p>{entry.text}</p>
             </li>
           ))}
         </ul>

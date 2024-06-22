@@ -122,20 +122,34 @@ app.post("/logout", (req, res) => {
 
 app.post("/addentry", async (req, res) => {
   try {
-    const { date, location, entry, photoURL, email } = req.body;
-    const userDoc = await User.findOne({ email: email });
+    const { date, location, entry, photoURL, userID } = req.body;
 
     const entryDoc = await Entry.create({
       date,
       location,
       text: entry,
       photos: [photoURL],
-      userID: userDoc._id,
+      userID: userID,
     });
     res.status(201).json({ message: "Entry added successfully", entryDoc });
   } catch (err) {
     console.error("Error adding entry:", err);
     res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+app.get("/getentries", async (req, res) => {
+  try {
+    const { userID } = req.query;
+    if (!userID) {
+      return res
+        .status(400)
+        .json({ error: "userID parameter is missing or invalid" });
+    }
+    const entries = await Entry.find({ userID });
+    res.json(entries);
+  } catch (err) {
+    console.log("Get entries error:", err);
   }
 });
 

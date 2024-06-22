@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { UserContext } from "../UserContext";
 import { useNavigate } from "react-router-dom";
 import travelImage from "../assets/travel.png";
-import "./Home.css"; // Import your CSS file for Home component styling
+import "./Home.css";
 
 const Home = () => {
   // const [redirect, setRedirect] = useState(false);

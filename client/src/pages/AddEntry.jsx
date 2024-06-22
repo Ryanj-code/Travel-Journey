@@ -1,16 +1,28 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import "./AddEntry.css"; // Import your CSS file for styling
+import { useContext, useEffect, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
+import axios from "axios";
+import "./AddEntry.css";
+import { UserContext } from "../UserContext";
 
 const AddEntry = () => {
   const [formData, setFormData] = useState({
     date: "",
     location: "",
-    mood: "",
     entry: "",
     photoFile: null, // For file uploads
     photoURL: "", // For linking photos
+    email: "",
   });
+  const [redirect, setRedirect] = useState(false);
+  const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    if (user) {
+      setFormData({ ...formData, email: user.email });
+    } else {
+      setRedirect(true);
+    }
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -23,19 +35,29 @@ const AddEntry = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleAddEntry = async (e) => {
     e.preventDefault();
+
     console.log(formData);
+    try {
+      const res = await axios.post("/addentry", formData);
+      console.log("Entry added:", res.data);
+    } catch (err) {
+      console.log(err);
+    }
     // Clear form fields after submission
     setFormData({
       date: "",
       location: "",
-      mood: "",
       entry: "",
       photoFile: null,
       photoURL: "",
     });
   };
+
+  if (redirect) {
+    return <Navigate to={"/"} />;
+  }
 
   return (
     <div className="add-entry">
@@ -44,20 +66,20 @@ const AddEntry = () => {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke="black"
           className="size-6 back"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3"
           />
         </svg>
       </Link>
       <div className="entry-container">
         <h1>Add an Entry</h1>
-        <form onSubmit={handleSubmit} className="entry-form">
+        <form onSubmit={handleAddEntry} className="entry-form">
           <label htmlFor="date">Date:</label>
           <input
             type="date"

@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "../UserContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./Header.css"; // Import your CSS file
+import "./Header.css";
 
 const Header = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);

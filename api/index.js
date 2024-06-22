@@ -5,7 +5,9 @@ const { default: mongoose } = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("./models/User.js");
+const Entry = require("./models/Entry.js");
 const cookierParser = require("cookie-parser");
+// const imageDownloader = require("image-downloader");
 require("dotenv").config();
 const app = express();
 
@@ -48,9 +50,9 @@ app.post("/signup", async (req, res) => {
         if (err) throw err;
         res
           .cookie("token", token, {
-            httpOnly: true,
-            secure: true,
-            sameSite: "strict",
+            httpOnly: true, // ensures the cookie is not accessible via JavaScript, enhancing security
+            secure: true, // ensures the cookie is sent over HTTPS only
+            sameSite: "strict", // helps prevent CSRF attacks by ensuring the cookie is sent only in a first-party context
           })
           .status(201)
           .json(userDoc);
@@ -90,10 +92,10 @@ app.post("/login", async (req, res) => {
           } // callback function
         );
       } else {
-        res.status(422).json("pass not ok");
+        res.status(422).json("Password is not correct");
       }
     } else {
-      res.json("not found");
+      res.json("User not found");
     }
   } catch (err) {
     console.error("Error logging in:", err);
@@ -116,6 +118,25 @@ app.get("/profile", async (req, res) => {
 
 app.post("/logout", (req, res) => {
   res.cookie("token", "").json(true);
+});
+
+app.post("/addentry", async (req, res) => {
+  try {
+    const { date, location, entry, photoURL, email } = req.body;
+    const userDoc = await User.findOne({ email: email });
+
+    const entryDoc = await Entry.create({
+      date,
+      location,
+      text: entry,
+      photos: [photoURL],
+      userID: userDoc._id,
+    });
+    res.status(201).json({ message: "Entry added successfully", entryDoc });
+  } catch (err) {
+    console.error("Error adding entry:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 app.listen(4000, () => {

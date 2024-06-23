@@ -120,6 +120,20 @@ app.post("/logout", (req, res) => {
   res.cookie("token", "").json(true);
 });
 
+app.get("/getentries", async (req, res) => {
+  try {
+    const { userID } = req.query;
+    if (!userID) {
+      return res.status(400).json({ error: "userID is required" });
+    }
+    const entries = await Entry.find({ userID });
+    res.status(200).json(entries);
+  } catch (err) {
+    console.error("Error retrieving entries:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 app.post("/addentry", async (req, res) => {
   try {
     const { date, location, entry, photoURL, userID } = req.body;
@@ -138,18 +152,17 @@ app.post("/addentry", async (req, res) => {
   }
 });
 
-app.get("/getentries", async (req, res) => {
+app.delete("/deleteentry/:entryID", async (req, res) => {
   try {
-    const { userID } = req.query;
-    if (!userID) {
-      return res
-        .status(400)
-        .json({ error: "userID parameter is missing or invalid" });
-    }
-    const entries = await Entry.find({ userID });
-    res.json(entries);
+    const entryID = req.params.entryID;
+    const existingEntry = await Entry.findById(entryID);
+    if (!existingEntry) return res.status(404).json({ err: "Entry not found" });
+
+    await Entry.findByIdAndDelete(entryID);
+    res.status(200).json({ message: "Entry deleted successfully" });
   } catch (err) {
-    console.log("Get entries error:", err);
+    console.error("Error deleting entry:", err.message, err);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 

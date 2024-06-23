@@ -42,7 +42,7 @@ const AddEntry = () => {
       setRedirect(true);
       console.log("Entry added:", res.data);
     } catch (err) {
-      console.log(err);
+      console.err(err);
     }
     // Clear form fields after submission
     setFormData({

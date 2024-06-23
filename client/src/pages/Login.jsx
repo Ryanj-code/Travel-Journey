@@ -32,7 +32,7 @@ const Login = () => {
       setRedirect(true);
       console.log("Login successful.");
     } catch (err) {
-      console.log("Login Failed.", err);
+      console.err("Login Failed.", err);
     }
   };
 

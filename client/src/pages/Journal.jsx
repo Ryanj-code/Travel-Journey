@@ -2,11 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import axios from "axios";
+import EditEntryForm from "../components/EditEntryForm";
 import "./Journal.css";
 
 const Journal = () => {
   const [entries, setEntries] = useState([]);
   const [deleteEntryID, setDeleteEntryID] = useState(null);
+  const [editEntry, setEditEntry] = useState(null); // new state for editing an entry
   const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
@@ -51,17 +53,29 @@ const Journal = () => {
     }
   };
 
+  const handleSaveEdit = async () => {
+    await fetchEntries(); // Fetch the updated list of entries
+    setEditEntry(null); // Clear the edit state
+  };
+
+  const handleCancelEdit = () => {
+    setEditEntry(null); // Clear the edit state
+  };
+
   return (
     <div className="journal">
-      <Link to={"/addentry"}>Add Entry</Link>
-
-      <div className="user-entries">
+      <div>
         <h2>Your Entries</h2>
+        <Link to={"/addentry"}>Add Entry</Link>
+      </div>
+      <div className="user-entries">
         <ul>
           {entries.map((entry) => (
             <li key={entry._id}>
               <h3>{entry.location}</h3>
               <p>{entry.text}</p>
+              {/* <img src={entry.photos[0]} alt="Entry Photo" /> */}
+              <button onClick={() => setEditEntry(entry)}>Edit</button>
               <button onClick={() => setDeleteEntryID(entry._id)}>
                 Delete
               </button>
@@ -79,6 +93,16 @@ const Journal = () => {
             </button>
             <button onClick={() => setDeleteEntryID(null)}>Cancel</button>
           </div>
+        </div>
+      )}
+      {/* Edit Entry Form (modal)*/}
+      {editEntry && (
+        <div className="modal-background">
+          <EditEntryForm
+            entry={editEntry}
+            onSave={handleSaveEdit}
+            onCancel={handleCancelEdit}
+          />
         </div>
       )}
     </div>

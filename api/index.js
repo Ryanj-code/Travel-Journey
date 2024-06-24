@@ -154,7 +154,7 @@ app.post("/addentry", async (req, res) => {
 
 app.delete("/deleteentry/:entryID", async (req, res) => {
   try {
-    const entryID = req.params.entryID;
+    const { entryID } = req.params;
     const existingEntry = await Entry.findById(entryID);
     if (!existingEntry) return res.status(404).json({ err: "Entry not found" });
 
@@ -162,6 +162,23 @@ app.delete("/deleteentry/:entryID", async (req, res) => {
     res.status(200).json({ message: "Entry deleted successfully" });
   } catch (err) {
     console.error("Error deleting entry:", err.message, err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+app.put("/editentry/:entryID", async (req, res) => {
+  try {
+    const { entryID } = req.params;
+    const { location, text } = req.body;
+    const editedEntry = await Entry.findByIdAndUpdate(
+      entryID,
+      { location, text },
+      { new: true, runValidators: true }
+    );
+    if (!editedEntry) return res.status(404).json({ err: "Entry not found" });
+    res.status(200).json({ message: "Entry edited successfully" });
+  } catch (err) {
+    console.error("Error updating entry:", err.message, err);
     res.status(500).json({ error: "Internal server error" });
   }
 });

@@ -20,26 +20,23 @@ const Journal = () => {
         console.error("Error fetching user profile:", err.message, err);
       }
     };
-    // fetch user info here with "/profile" instead of using UserContext
-    // Issue: Using user directly from UserContext leads to user being null
-    // which means that user isn't fetched in time for fetchEntries.
     fetchUser();
   }, [setUser]);
 
   useEffect(() => {
-    fetchEntries();
+    if (user && user.id) {
+      fetchEntries();
+    }
   }, [user]);
 
   const fetchEntries = async () => {
-    if (user && user.id) {
-      try {
-        const res = await axios.get("/getentries", {
-          params: { userID: user.id },
-        });
-        setEntries(res.data);
-      } catch (err) {
-        console.error("Error fetching entries:", err.message, err);
-      }
+    try {
+      const res = await axios.get("/getentries", {
+        params: { userID: user.id },
+      });
+      setEntries(res.data);
+    } catch (err) {
+      console.error("Error fetching entries:", err.message, err);
     }
   };
 
@@ -65,8 +62,8 @@ const Journal = () => {
   return (
     <div className="journal">
       <div>
-        <h2>Your Entries</h2>
-        <Link to={"/addentry"}>Add Entry</Link>
+        {user ? <h2>{user.name}'s Entries</h2> : <h2>Loading...</h2>}
+        <Link to={"/addentry"}>Add an Entry</Link>
       </div>
       <div className="user-entries">
         <ul>

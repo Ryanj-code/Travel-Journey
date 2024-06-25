@@ -8,7 +8,8 @@
 
 .form-container-login {
   font-size: 3vh;
-  color: white;
+  color: var(--text-color-2);
+  font-weight: 500;
   max-width: 100vh;
   margin: auto;
   padding: 2vh;
@@ -16,11 +17,13 @@
   background-color: transparent;
   -ms-transform: translateY(70%);
   transform: translateY(70%);
+  z-index: 2;
 }
 
 .form-container-signup {
   font-size: 3vh;
-  color: white;
+  color: var(--text-color-2);
+  font-weight: 500;
   max-width: 100vh;
   margin: auto;
   padding: 2vh;
@@ -61,13 +64,13 @@
   padding: 1.5vh;
   border: none;
   border-radius: 2vh;
-  background-color: #007bff;
-  color: #fff;
+  background-color: var(--button-color);
+  color: var(--text-header-color);
   cursor: pointer;
 }
 
 .form-fields button:hover {
-  background-color: #0056b3;
+  background-color: var(--button-hover-color);
 }
 
 .options-container {
@@ -76,4 +79,9 @@
   justify-content: center;
   padding: 1vh;
   gap: 0.5vh;
+}
+
+.options-item-link {
+  text-decoration: none;
+  color: var(--button-color);
 }

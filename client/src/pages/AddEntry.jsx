@@ -40,6 +40,7 @@ const AddEntry = () => {
     try {
       const res = await axios.post("/addentry", formData);
       setRedirect(true);
+      return <Navigate to={"/journal"} />;
       console.log("Entry added:", res.data);
     } catch (err) {
       console.err(err);

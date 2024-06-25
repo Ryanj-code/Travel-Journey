@@ -23,7 +23,7 @@ const Home = () => {
     <div>
       <div className="home-container">
         <button onClick={handleStart}>
-          <h1>Start your log</h1>
+          <h1>Start an Entry</h1>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

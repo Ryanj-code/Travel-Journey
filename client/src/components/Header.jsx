@@ -2,13 +2,15 @@ import { useContext, useState } from "react";
 import { UserContext } from "../UserContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import DarkModeButton from "./DarkModeButton";
 import "./Header.css";
 
 const Header = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
-
+  const [darkTheme, setDarkTheme] = useState(true);
+  // Start as light theme, but set to true first so first toggle leads to dark theme
   const handleNavigation = async (target) => {
     switch (target) {
       case "home":
@@ -38,6 +40,12 @@ const Header = () => {
     setDropdownVisible(!dropdownVisible);
   };
 
+  const toggleTheme = () => {
+    setDarkTheme(!darkTheme);
+    // You can also save the theme preference in localStorage for persistence
+    document.body.classList.toggle("dark-theme", darkTheme);
+  };
+
   return (
     <div className="header">
       <div className="left-section" onClick={() => handleNavigation("home")}>
@@ -51,7 +59,9 @@ const Header = () => {
         </svg>
         Travel Log
       </div>
-      <div className="middle-section"></div>
+      <div className="middle-section">
+        <DarkModeButton />
+      </div>
       <div className="right-section" onClick={toggleDropdown}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -80,12 +90,14 @@ const Header = () => {
         {dropdownVisible && (
           <div className="dropdown-menu">
             {user ? ( // If user is logged in, show logout option
-              <div
-                className="dropdown-item"
-                onClick={() => handleNavigation("logout")}
-              >
-                Logout
-              </div>
+              <>
+                <div
+                  className="dropdown-item"
+                  onClick={() => handleNavigation("logout")}
+                >
+                  Logout
+                </div>
+              </>
             ) : (
               <>
                 <div

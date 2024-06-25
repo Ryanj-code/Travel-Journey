@@ -1,95 +1,170 @@
 .journal {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding-top: 10vh; /* Add padding equal to the height of the header */
+  animation: fadeIn 1s ease-in-out;
 }
 
-.user-entries {
-  margin-top: 30vh;
+.journal div {
+  width: 100%;
+  max-width: 800px;
 }
 
-.user-entries h2 {
+.journal h2 {
   margin-bottom: 20px;
+  color: var(--header-text-color);
+  text-align: center;
+}
+
+.journal a {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  color: var(--container-color);
+  background-color: var(--button-color);
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.journal a:hover {
+  background-color: var(--button-hover-color);
 }
 
 .user-entries ul {
   list-style-type: none;
   padding: 0;
-  overflow-y: auto; /* Enable vertical scrolling */
+  margin: 0;
+  width: 100%;
 }
 
 .user-entries li {
-  background: #f9f9f9;
-  width: 100vh;
-  margin-bottom: 2vh;
-  padding: 2vh;
-  border-radius: 1vh;
+  background: var(--container-color);
+  margin-bottom: 15px;
+  padding: 20px;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
 }
 
-.user-entries h3,
+.user-entries li:hover {
+  transform: scale(1.02);
+}
+
+.user-entries h3 {
+  margin: 0 0 10px;
+  color: var(--header-text-color);
+  font-weight: 500;
+}
+
 .user-entries p {
   margin: 0 0 10px;
+  color: var(--text-color);
+}
+
+.user-entries button {
+  background: var(--button-color-2);
+  color: var(--container-color);
+  display: inline-block;
+  font-weight: 500;
+  width: calc(50% - 50px);
+  margin: 0 25px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.user-entries button:hover {
+  background-color: var(--button-hover-color-2);
+}
+
+.user-entries button:nth-child(2) {
+  background-color: #dc3545;
+}
+
+.user-entries button:nth-child(2):hover {
+  background-color: #c82333;
 }
 
 .modal-background {
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 100%;
 }
 
-.edit-entry-form,
-.delete-confirmation {
-  background: #fff;
-  padding: 1%; /* Adjusted padding for more space */
+.modal-background div {
+  background: var(--container-color);
+  color: var(--header-text-color);
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 90%; /* Increased width for more room */
-  max-width: 500px; /* Set a max-width for larger screens */
+  width: 100%;
+  max-width: 500px;
   text-align: center;
 }
 
-.delete-confirmation {
-  max-width: 300px; /* Set a different max-width for delete confirmation */
+.modal-background .delete-confirmation {
+  max-width: 300px;
 }
 
-.delete-confirmation p,
-.edit-entry-form h3 {
+.modal-background h3,
+.modal-background p {
   margin-bottom: 20px;
 }
 
-.edit-entry-form label {
+.modal-background label {
   display: block;
   margin-bottom: 10px;
   text-align: left;
+  font-weight: 600;
 }
 
-.edit-entry-form input,
-.edit-entry-form textarea {
-  width: calc(100% - 20px);
-  padding: 8px 10px;
+.modal-background input,
+.modal-background textarea {
+  padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
-}
-
-.journal button {
-  margin: 0 5px;
-  padding: 5px 10px;
-  border: none;
   border-radius: 4px;
-  cursor: pointer;
-  display: inline-block;
-  width: calc(50% - 10px);
-  margin: 5px;
 }
 
-.journal button:hover {
-  background: #ddd;
+.modal-background button {
+  background: var(--button-color-2);
+  color: var(--container-color);
+  margin: 10px 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-background button:hover {
+  background-color: var(--button-hover-color-2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

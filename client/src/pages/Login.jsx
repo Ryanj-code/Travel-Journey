@@ -24,7 +24,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Log in with: ", data);
+    //console.log("Log in with: ", data);
 
     try {
       const res = await axios.post("/login", data);
@@ -65,7 +65,7 @@ const Login = () => {
         </form>
         <div className="options-container">
           <div className="options-item">Don't have an account?</div>
-          <Link to="/signup" className="options-item">
+          <Link to="/signup" className="options-item-link">
             Sign up here
           </Link>
         </div>

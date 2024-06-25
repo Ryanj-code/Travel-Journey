@@ -1,7 +1,7 @@
 body {
   font-family: "Poppins", sans-serif;
+  background-color: var(--background-color);
+  color: var(--header-text-color);
   margin: 0;
   padding: 0;
-  background-color: gray;
-  color: black;
 }

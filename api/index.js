@@ -26,7 +26,7 @@ app.use(
 mongoose.connect(process.env.MONGO_URL);
 
 app.get("/test", (req, res) => {
-  res.json("test ok 6/17");
+  res.json("test ok 6/26");
 });
 
 app.post("/signup", async (req, res) => {
@@ -166,16 +166,23 @@ app.delete("/deleteentry/:entryID", async (req, res) => {
   }
 });
 
-app.put("/editentry/:entryID", async (req, res) => {
+app.put("/editentry/:id", async (req, res) => {
   try {
-    const { entryID } = req.params;
-    const { location, text } = req.body;
-    const editedEntry = await Entry.findByIdAndUpdate(
-      entryID,
-      { location, text },
-      { new: true, runValidators: true }
-    );
-    if (!editedEntry) return res.status(404).json({ err: "Entry not found" });
+    const entryID = req.params.id;
+    const { date, location, entry, photoURL, userID } = req.body;
+
+    const updatedData = {
+      date,
+      location,
+      text: entry,
+      photos: [photoURL],
+      userID,
+    };
+
+    const result = await Entry.findByIdAndUpdate(entryID, updatedData, {
+      new: true,
+    });
+    if (!result) return res.status(404).json({ err: "Entry not found" });
     res.status(200).json({ message: "Entry edited successfully" });
   } catch (err) {
     console.error("Error updating entry:", err.message, err);
@@ -196,6 +203,8 @@ app.get("/entry/:id", async (req, res) => {
   }
 });
 
-app.listen(4000, () => {
-  console.log("Server is running on http://localhost:4000");
+const PORT = process.env.PORT;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });

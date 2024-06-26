@@ -1,0 +1,21 @@
+.add-entry {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.entry-container {
+  width: 100%;
+  max-width: 80rem; /* Adjust the max-width as needed */
+  background-color: var(--container-color);
+  color: var(--header-text-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 3vh;
+  margin-bottom: 1vh;
+  text-align: center;
+}

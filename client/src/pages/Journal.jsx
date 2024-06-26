@@ -2,13 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import axios from "axios";
-import EditEntryForm from "../components/EditEntryForm";
 import "./Journal.css";
 
 const Journal = () => {
   const [entries, setEntries] = useState([]);
   const [deleteEntryID, setDeleteEntryID] = useState(null);
-  const [editEntry, setEditEntry] = useState(null);
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -21,9 +19,6 @@ const Journal = () => {
         console.error("Error fetching user profile:", err.message, err);
       }
     };
-    // fetch user info here with "/profile" instead of using UserContext
-    // Issue: Using user directly from UserContext leads to user being null
-    // which means that user isn't fetched in time for fetchEntries.
     fetchUser();
   }, [setUser]);
 
@@ -46,7 +41,7 @@ const Journal = () => {
 
   const handleDeleteEntry = async (entryID) => {
     try {
-      await axios.delete(`deleteentry/${entryID}`);
+      await axios.delete(`/deleteentry/${entryID}`);
       fetchEntries();
       setDeleteEntryID(null);
     } catch (err) {
@@ -54,26 +49,18 @@ const Journal = () => {
     }
   };
 
-  const handleSaveEdit = async () => {
-    await fetchEntries();
-    setEditEntry(null);
-  };
-
-  const handleCancelEdit = () => {
-    setEditEntry(null);
-  };
-
   const handleDetailedEntryClick = (entryId) => {
-    console.log(entryId);
     navigate(`/entry/${entryId}`);
+  };
+
+  const handleEditEntryClick = (entryId) => {
+    navigate(`/editentry/${entryId}`);
   };
 
   const handleEditClick = (event, entry) => {
     event.stopPropagation();
-    setEditEntry(entry);
+    handleEditEntryClick(entry._id);
   };
-  // The event.stopPropagation() is used to ensure that clicking the "Edit" or "Delete"
-  // buttons doesn't trigger the onClick handler in the parent li element
 
   const handleDeleteClick = (event, entryID) => {
     event.stopPropagation();
@@ -82,7 +69,7 @@ const Journal = () => {
 
   return (
     <div className="journal">
-      <div>
+      <div className="journal-header">
         {user ? <h2>{user.name}'s Entries</h2> : <h2>Loading...</h2>}
         <Link to={"/addentry"}>Add an Entry</Link>
       </div>
@@ -114,15 +101,6 @@ const Journal = () => {
             </button>
             <button onClick={() => setDeleteEntryID(null)}>Cancel</button>
           </div>
-        </div>
-      )}
-      {editEntry && (
-        <div className="modal-background">
-          <EditEntryForm
-            entry={editEntry}
-            onSave={handleSaveEdit}
-            onCancel={handleCancelEdit}
-          />
         </div>
       )}
     </div>

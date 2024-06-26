@@ -7,8 +7,6 @@ const EntryDetail = () => {
   const [entry, setEntry] = useState(null);
   const { entryId } = useParams();
 
-  console.log(entryId);
-
   useEffect(() => {
     const fetchEntry = async () => {
       try {

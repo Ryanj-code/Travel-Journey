@@ -1,0 +1,27 @@
+/* EntryDetail.css */
+.entry-detail {
+  padding-top: 10vh;
+  animation: slideIn 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.entry-detail img {
+  max-width: 50%;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

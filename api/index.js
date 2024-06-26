@@ -183,6 +183,19 @@ app.put("/editentry/:entryID", async (req, res) => {
   }
 });
 
+app.get("/entry/:id", async (req, res) => {
+  const entryId = req.params.id;
+  try {
+    const entry = await Entry.findById(entryId);
+    if (!entry) {
+      return res.status(404).send("Entry not found");
+    }
+    res.json(entry);
+  } catch (err) {
+    res.status(500).send("Server error");
+  }
+});
+
 app.listen(4000, () => {
   console.log("Server is running on http://localhost:4000");
 });

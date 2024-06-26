@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import axios from "axios";
 import EditEntryForm from "../components/EditEntryForm";
@@ -8,8 +8,9 @@ import "./Journal.css";
 const Journal = () => {
   const [entries, setEntries] = useState([]);
   const [deleteEntryID, setDeleteEntryID] = useState(null);
-  const [editEntry, setEditEntry] = useState(null); // new state for editing an entry
+  const [editEntry, setEditEntry] = useState(null);
   const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -20,6 +21,9 @@ const Journal = () => {
         console.error("Error fetching user profile:", err.message, err);
       }
     };
+    // fetch user info here with "/profile" instead of using UserContext
+    // Issue: Using user directly from UserContext leads to user being null
+    // which means that user isn't fetched in time for fetchEntries.
     fetchUser();
   }, [setUser]);
 
@@ -51,12 +55,29 @@ const Journal = () => {
   };
 
   const handleSaveEdit = async () => {
-    await fetchEntries(); // Fetch the updated list of entries
-    setEditEntry(null); // Clear the edit state
+    await fetchEntries();
+    setEditEntry(null);
   };
 
   const handleCancelEdit = () => {
-    setEditEntry(null); // Clear the edit state
+    setEditEntry(null);
+  };
+
+  const handleDetailedEntryClick = (entryId) => {
+    console.log(entryId);
+    navigate(`/entry/${entryId}`);
+  };
+
+  const handleEditClick = (event, entry) => {
+    event.stopPropagation();
+    setEditEntry(entry);
+  };
+  // The event.stopPropagation() is used to ensure that clicking the "Edit" or "Delete"
+  // buttons doesn't trigger the onClick handler in the parent li element
+
+  const handleDeleteClick = (event, entryID) => {
+    event.stopPropagation();
+    setDeleteEntryID(entryID);
   };
 
   return (
@@ -68,19 +89,22 @@ const Journal = () => {
       <div className="user-entries">
         <ul>
           {entries.map((entry) => (
-            <li key={entry._id}>
+            <li
+              key={entry._id}
+              onClick={() => handleDetailedEntryClick(entry._id)}
+            >
               <h3>{entry.location}</h3>
               <p>{entry.text}</p>
-              {/* <img src={entry.photos[0]} alt="Entry Photo" /> */}
-              <button onClick={() => setEditEntry(entry)}>Edit</button>
-              <button onClick={() => setDeleteEntryID(entry._id)}>
+              <button onClick={(event) => handleEditClick(event, entry)}>
+                Edit
+              </button>
+              <button onClick={(event) => handleDeleteClick(event, entry._id)}>
                 Delete
               </button>
             </li>
           ))}
         </ul>
       </div>
-      {/* Modal or confirmation dialog for delete */}
       {deleteEntryID && (
         <div className="modal-background">
           <div className="delete-confirmation">
@@ -92,7 +116,6 @@ const Journal = () => {
           </div>
         </div>
       )}
-      {/* Edit Entry Form (modal)*/}
       {editEntry && (
         <div className="modal-background">
           <EditEntryForm

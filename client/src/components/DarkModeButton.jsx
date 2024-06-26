@@ -31,7 +31,7 @@ const DarkModeButton = () => {
         className="toggle-checkbox"
         onClick={toggleTheme}
       />
-      <label for="dark-mode-toggle" className="toggle-label"></label>
+      <label htmlFor="dark-mode-toggle" className="toggle-label"></label>
     </div>
   );
 };

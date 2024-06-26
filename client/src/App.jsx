@@ -6,8 +6,9 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Journal from "./pages/Journal";
-import "./App.css";
 import AddEntry from "./pages/AddEntry";
+import EntryDetail from "./pages/EntryDetail";
+import "./App.css";
 
 axios.defaults.baseURL = "http://localhost:4000";
 axios.defaults.withCredentials = true;
@@ -22,6 +23,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/journal" element={<Journal />} />
+          <Route path="/entry/:entryId" element={<EntryDetail />} />
           <Route path="/addentry" element={<AddEntry />} />
         </Routes>
       </Router>

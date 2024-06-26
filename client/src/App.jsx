@@ -6,7 +6,8 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Journal from "./pages/Journal";
-import AddEntry from "./pages/AddEntry";
+import AddEntryForm from "./pages/AddEntryForm";
+import EditEntryForm from "./pages/EditEntryForm";
 import EntryDetail from "./pages/EntryDetail";
 import "./App.css";
 
@@ -24,7 +25,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/journal" element={<Journal />} />
           <Route path="/entry/:entryId" element={<EntryDetail />} />
-          <Route path="/addentry" element={<AddEntry />} />
+          <Route path="/addentry" element={<AddEntryForm />} />
+          <Route path="/editentry/:entryId" element={<EditEntryForm />} />
         </Routes>
       </Router>
     </UserContextProvider>

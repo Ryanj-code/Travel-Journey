@@ -7,6 +7,12 @@
   animation: fadeIn 1s ease-in-out;
 }
 
+.journal-header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .journal div {
   width: 100%;
   max-width: 800px;

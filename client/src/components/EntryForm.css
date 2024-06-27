@@ -2,7 +2,11 @@
   display: flex;
   flex-direction: column;
   grid-gap: 1vh;
-  padding: 2vh;
+  padding: 1vh 2vh;
+}
+
+label {
+  font-weight: bold;
 }
 
 .photo-inputs {
@@ -10,11 +14,6 @@
   align-items: center;
   gap: 1rem; /* Adjust the gap between inputs */
   margin-top: 2vh;
-}
-
-.photo-inputs {
-  display: flex;
-  align-items: center;
 }
 
 .photo-inputs input[type="text"] {
@@ -27,8 +26,25 @@
   white-space: nowrap; /* Prevent label text from wrapping */
 }
 
-label {
-  font-weight: bold;
+.photo-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 5px; /* Adjust margin as needed */
+}
+
+.photo-buttons button {
+  padding: 10px;
+  border-radius: 10px;
+  width: 30%;
+  background-color: var(--button-color-2);
+  color: var(--container-color);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.photo-buttons button:hover {
+  background-color: var(--button-color-2);
 }
 
 input[type="text"],
@@ -62,9 +78,9 @@ textarea {
   font-size: 2.5vh;
   width: 100%;
   border: none;
-  padding: 1.5vh;
+  padding: 1vh;
   border-radius: 1vh;
-  margin-top: 2vh;
+  margin-top: 1vh;
   cursor: pointer;
   justify-self: center; /* Center the button horizontally */
 }

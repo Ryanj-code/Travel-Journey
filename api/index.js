@@ -136,14 +136,18 @@ app.get("/getentries", async (req, res) => {
 
 app.post("/addentry", async (req, res) => {
   try {
-    const { date, location, entry, photoURL, userID } = req.body;
+    const { title, date, location, content, photos, userID } = req.body;
+    console.log(req.body);
 
     const entryDoc = await Entry.create({
+      title,
       date,
       location,
-      text: entry,
-      photos: [photoURL],
-      userID: userID,
+      content,
+      photos,
+      createdAt: Date.now(),
+      updateAt: Date.now(),
+      userID,
     });
     res.status(201).json({ message: "Entry added successfully", entryDoc });
   } catch (err) {
@@ -169,13 +173,17 @@ app.delete("/deleteentry/:entryID", async (req, res) => {
 app.put("/editentry/:id", async (req, res) => {
   try {
     const entryID = req.params.id;
-    const { date, location, entry, photoURL, userID } = req.body;
+    const { title, date, location, content, photos, createdAt, userID } =
+      req.body;
 
     const updatedData = {
+      title,
       date,
       location,
-      text: entry,
-      photos: [photoURL],
+      content,
+      photos,
+      createdAt,
+      updateAt: Date.now(),
       userID,
     };
 

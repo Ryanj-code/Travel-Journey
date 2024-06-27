@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import EntryForm from "../components/EntryForm";
 import "./EditEntryForm.css";
@@ -25,6 +25,7 @@ const EditEntryForm = () => {
 
   const handleSaveEdit = async (formData) => {
     try {
+      // Ensure that formData includes the correct field names expected by your backend
       await axios.put(`/editentry/${entryId}`, formData);
     } catch (err) {
       console.error("Error editing entry:", err.message, err);
@@ -49,7 +50,7 @@ const EditEntryForm = () => {
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3"
+            d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 0 1 0 12h-3"
           />
         </svg>
       </Link>
@@ -57,10 +58,13 @@ const EditEntryForm = () => {
         <h1>Edit Entry</h1>
         <EntryForm
           initialFormData={{
+            title: entry.title,
             date: entry.date,
             location: entry.location,
-            entry: entry.text, // text is field name in db, entry is initial state name
-            photoURL: entry.photos || "", // entry has photos field, entryform is taking photoURL
+            content: entry.content,
+            photos: entry.photos,
+            createdAt: entry.createdAt,
+            updatedAt: entry.updatedAt,
             userID: entry.userID,
           }}
           onSubmit={handleSaveEdit}

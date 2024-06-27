@@ -14,13 +14,15 @@ const EntryDetail = () => {
         setEntry(res.data);
       } catch (err) {
         console.error("Error fetching entry:", err.message, err);
+        // Handle error state, e.g., setEntry(null) or show error message
       }
     };
+
     fetchEntry();
   }, [entryId]);
 
   if (!entry) {
-    return <p>Loading...</p>;
+    return <p>Loading...</p>; // Show loading state while fetching data
   }
 
   const formatDate = (dateString) => {
@@ -29,23 +31,33 @@ const EntryDetail = () => {
       undefined,
       options
     );
+    console.log(entry);
+
     return formattedDate;
   };
 
   return (
     <div className="entry-detail">
-      <h2>{entry.location}</h2>
-      <h3>{formatDate(entry.date)}</h3>
-      <p>{entry.text}</p>
-      {entry.photos &&
-        entry.photos.map((photo, index) => (
-          <img
-            key={index}
-            src={photo}
-            alt={`Entry Photo ${index + 1}: Invalid Link`}
-          />
-        ))}
-      <Link to="/">Back to Entries</Link>
+      <h1 className="entry-title">{entry.title}</h1>
+      <div className="entry-meta">
+        <p>{entry.location}</p>
+        <p>{formatDate(entry.date)}</p>
+      </div>
+      <p className="entry-content">{entry.content}</p>
+      <div className="entry-photos">
+        {entry.photos &&
+          entry.photos.map((photo, index) => (
+            <img
+              key={index}
+              src={photo}
+              alt={`Entry Photo ${index + 1}: Invalid Link`}
+              className="entry-photo"
+            />
+          ))}
+      </div>
+      <Link to="/" className="back-link">
+        Back to Entries
+      </Link>
     </div>
   );
 };

@@ -49,17 +49,17 @@ const Journal = () => {
     }
   };
 
-  const handleDetailedEntryClick = (entryId) => {
-    navigate(`/entry/${entryId}`);
+  const handleDetailedEntryClick = (entryID) => {
+    navigate(`/entry/${entryID}`);
   };
 
-  const handleEditEntryClick = (entryId) => {
-    navigate(`/editentry/${entryId}`);
+  const handleEditEntryClick = (entryID) => {
+    navigate(`/editentry/${entryID}`);
   };
 
-  const handleEditClick = (event, entry) => {
+  const handleEditClick = (event, entryID) => {
     event.stopPropagation();
-    handleEditEntryClick(entry._id);
+    handleEditEntryClick(entryID);
   };
 
   const handleDeleteClick = (event, entryID) => {
@@ -81,8 +81,8 @@ const Journal = () => {
               onClick={() => handleDetailedEntryClick(entry._id)}
             >
               <h3>{entry.location}</h3>
-              <p>{entry.text}</p>
-              <button onClick={(event) => handleEditClick(event, entry)}>
+              <p>{entry.content}</p>
+              <button onClick={(event) => handleEditClick(event, entry._id)}>
                 Edit
               </button>
               <button onClick={(event) => handleDeleteClick(event, entry._id)}>

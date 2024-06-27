@@ -8,6 +8,7 @@ const EntryForm = ({ initialFormData, onSubmit, redirectPath }) => {
     date: initialFormData.date ? initialFormData.date.split("T")[0] : "",
   });
   const [redirect, setRedirect] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setFormData({
@@ -16,26 +17,29 @@ const EntryForm = ({ initialFormData, onSubmit, redirectPath }) => {
     });
   }, [initialFormData]);
 
-  //console.log(formData);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await onSubmit(formData);
       setRedirect(true);
     } catch (err) {
       console.error("Error submitting form:", err);
+      setLoading(false); // Set loading to false in case of error
     }
   };
 
   if (redirect) {
     return <Navigate to={redirectPath} />;
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
   return (

@@ -4,7 +4,7 @@
   align-items: center;
   min-height: 100vh;
   padding-top: 10vh; /* Add padding equal to the height of the header */
-  animation: fadeIn 1s ease-in-out;
+  animation: slideIn 0.8s ease-in-out;
 }
 
 .journal-header {
@@ -105,6 +105,7 @@
   align-items: center;
   justify-content: center;
   min-width: 100%;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .modal-background div {

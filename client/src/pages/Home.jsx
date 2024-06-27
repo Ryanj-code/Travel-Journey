@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
-import { UserContext } from "../UserContext";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../UserContext";
 import travelImage from "../assets/travel.png";
 import "./Home.css";
 

@@ -3,11 +3,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .entry-container {
   width: 100%;
-  max-width: 80rem; /* Adjust the max-width as needed */
+  max-width: 80rem;
   background-color: var(--container-color);
   color: var(--header-text-color);
   border-radius: 8px;
@@ -18,4 +19,13 @@ h1 {
   font-size: 3vh;
   margin-bottom: 1vh;
   text-align: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

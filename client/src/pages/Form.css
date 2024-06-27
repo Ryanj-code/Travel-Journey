@@ -17,7 +17,7 @@
   background-color: transparent;
   -ms-transform: translateY(70%);
   transform: translateY(70%);
-  z-index: 2;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .form-container-signup {
@@ -31,6 +31,7 @@
   background-color: transparent;
   -ms-transform: translateY(60%);
   transform: translateY(60%);
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .form-title {
@@ -84,4 +85,17 @@
 .options-item-link {
   text-decoration: none;
   color: var(--button-color);
+}
+
+.options-item-link:hover {
+  color: var(--button-hover-color);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import axios from "axios";
 import EntryForm from "../components/EntryForm";
 import "./EditEntryForm.css";
 
@@ -59,8 +59,8 @@ const EditEntryForm = () => {
           initialFormData={{
             date: entry.date,
             location: entry.location,
-            entry: entry.text, // Assuming the field name in entry is 'text'
-            photoURL: entry.photos || "", // Assuming the entry has 'photoURL' field
+            entry: entry.text, // text is field name in db, entry is initial state name
+            photoURL: entry.photos || "", // entry has photos field, entryform is taking photoURL
             userID: entry.userID,
           }}
           onSubmit={handleSaveEdit}

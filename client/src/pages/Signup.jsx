@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
+import { UserContext } from "../UserContext";
 import axios from "axios";
 import "./Form.css";
-import { UserContext } from "../UserContext";
-import { Link, Navigate } from "react-router-dom";
 
 const Signup = () => {
   const [data, setData] = useState({
@@ -74,7 +74,7 @@ const Signup = () => {
         </form>
         <div className="options-container">
           <div className="options-item">Have an account?</div>
-          <Link to="/login" className="options-item">
+          <Link to="/login" className="options-item-link">
             Login here
           </Link>
         </div>

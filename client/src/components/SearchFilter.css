@@ -1,0 +1,89 @@
+.search-filter {
+  display: flex;
+  margin-left: 1.5rem;
+  position: relative;
+}
+
+.search-filter input {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.search-filter button {
+  color: var(--container-color);
+  background-color: var(--button-color);
+  font-size: 15px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.search-filter button:hover {
+  background-color: var(--button-hover-color);
+}
+
+.search-filter-toggle {
+  display: inline-block;
+  font-size: 15px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  color: var(--container-color);
+  background-color: var(--button-color);
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+.search-filter-toggle:hover {
+  background-color: var(--button-hover-color);
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensure it appears above other content */
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.search-input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: calc(100% - 20px);
+}
+
+.search-button {
+  background: var(--button-color-2);
+  color: var(--container-color);
+  margin: 10px 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: var(--button-hover-color-2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

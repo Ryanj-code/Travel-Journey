@@ -122,11 +122,34 @@ app.post("/logout", (req, res) => {
 
 app.get("/getentries", async (req, res) => {
   try {
-    const { userID } = req.query;
+    const { userID, title, date, location, content } = req.query;
+
     if (!userID) {
       return res.status(400).json({ error: "userID is required" });
     }
-    const entries = await Entry.find({ userID });
+
+    // Build the query object
+    const query = { userID };
+
+    // Set up the query search.
+    // query.[value] sets the field, $regex: sets what is used to match in,
+    // $options are optional, here "i" is used for case-insensitive search
+    if (title) {
+      query.title = { $regex: title, $options: "i" };
+    }
+    if (date) {
+      query.date = date;
+    }
+    if (location) {
+      query.location = { $regex: location, $options: "i" };
+    }
+    if (content) {
+      query.content = { $regex: content, $options: "i" };
+    }
+
+    // console.log("Querying entries with:", query); // Log the query
+
+    const entries = await Entry.find(query);
     res.status(200).json(entries);
   } catch (err) {
     console.error("Error retrieving entries:", err);

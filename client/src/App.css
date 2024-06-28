@@ -1,5 +1,8 @@
-body {
+* {
   font-family: "Poppins", sans-serif;
+}
+
+body {
   background-color: var(--background-color);
   color: var(--header-text-color);
   margin: 0;

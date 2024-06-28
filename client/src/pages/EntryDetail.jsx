@@ -31,7 +31,6 @@ const EntryDetail = () => {
       undefined,
       options
     );
-    console.log(entry);
 
     return formattedDate;
   };

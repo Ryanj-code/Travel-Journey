@@ -93,15 +93,15 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2rem; /* Adjust the width as needed */
-  height: 2rem; /* Adjust the height as needed */
-  background-color: var(--button-color); /* Adjust the background color */
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--button-color-2);
   border-radius: 50%; /* Makes the link circular */
-  margin-right: 1rem; /* Adjust margin as needed */
+  margin-right: 1rem;
 }
 
 .icon-link:hover {
-  background-color: var(--button-hover-color); /* Adjust hover color */
+  background-color: var(--button-hover-color-2);
 }
 
 .size-6 back {

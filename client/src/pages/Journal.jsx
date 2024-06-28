@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import axios from "axios";
+import SearchFilter from "../components/SearchFilter";
 import "./Journal.css";
 
 const Journal = () => {
@@ -15,6 +16,7 @@ const Journal = () => {
       try {
         const { data } = await axios.get("/profile");
         setUser(data);
+        // console.log("User data fetched:", data); // Debug log
       } catch (err) {
         console.error("Error fetching user profile:", err.message, err);
       }
@@ -28,12 +30,13 @@ const Journal = () => {
     }
   }, [user]);
 
-  const fetchEntries = async () => {
+  const fetchEntries = async (filters = {}) => {
     try {
       const res = await axios.get("/getentries", {
-        params: { userID: user.id },
+        params: { userID: user.id, ...filters },
       });
       setEntries(res.data);
+      // console.log("Entries data fetched:", res.data); // Debug log
     } catch (err) {
       console.error("Error fetching entries:", err.message, err);
     }
@@ -67,11 +70,28 @@ const Journal = () => {
     setDeleteEntryID(entryID);
   };
 
+  const handleSearch = (filteredEntries) => {
+    setEntries(filteredEntries);
+  };
+
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    const formattedDate = new Date(dateString).toLocaleDateString(
+      undefined,
+      options
+    );
+
+    return formattedDate;
+  };
+
   return (
     <div className="journal">
       <div className="journal-header">
         {user ? <h2>{user.name}'s Entries</h2> : <h2>Loading...</h2>}
-        <Link to={"/addentry"}>Add an Entry</Link>
+        <div className="journal-actions">
+          <Link to={"/addentry"}>Add an Entry</Link>
+          <SearchFilter onSearch={handleSearch} user={user} />
+        </div>
       </div>
       <div className="user-entries">
         <ul>
@@ -80,8 +100,10 @@ const Journal = () => {
               key={entry._id}
               onClick={() => handleDetailedEntryClick(entry._id)}
             >
-              <h3>{entry.location}</h3>
-              <p>{entry.content}</p>
+              <h3>{entry.title}</h3>
+              <p>
+                {entry.location}, {formatDate(entry.date)}
+              </p>
               <button onClick={(event) => handleEditClick(event, entry._id)}>
                 Edit
               </button>

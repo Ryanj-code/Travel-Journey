@@ -19,7 +19,7 @@ app.use(cookierParser());
 app.use(
   cors({
     credentials: true,
-    origin: process.env.ALLOWED_ORIGIN,
+    origin: ["http://localhost:5173", "https://travel-journey-nu.vercel.app"],
   })
 );
 

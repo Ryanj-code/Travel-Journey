@@ -1,6 +1,6 @@
 /* Css for Login/Signup */
 .form-wrapper {
-  background-image: url("./src/assets/wood_bg.png");
+  background-image: url("../assets/wood_bg.png");
   background-repeat: no-repeat;
   background-size: cover; /* Ensures the background image covers the entire container */
   min-height: 100vh; /* Makes sure the container covers the full viewport height */

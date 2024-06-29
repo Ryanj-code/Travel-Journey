@@ -1,6 +1,6 @@
 .size-6 {
   width: 4vh;
-  height: 4vh;
+  height: auto;
 }
 
 .header {
@@ -36,7 +36,7 @@
 }
 
 .middle-section {
-  padding-right: 7vh;
+  padding-right: 10vh;
 }
 
 .dropdown-menu {

@@ -206,9 +206,11 @@ app.put("/editentry/:id", async (req, res) => {
       content,
       photos,
       createdAt,
-      updateAt: Date.now(),
+      updatedAt: Date.now(),
       userID,
     };
+
+    // console.log(updatedData);
 
     const result = await Entry.findByIdAndUpdate(entryID, updatedData, {
       new: true,

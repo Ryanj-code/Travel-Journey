@@ -19,29 +19,46 @@
 }
 
 .entry-content {
+  display: flex;
+  justify-content: center;
+  white-space: pre-wrap;
   line-height: 1.6;
   margin-bottom: 20px;
 }
 
 .entry-photos {
-  display: grid; /* Display photos in a grid layout */
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(50vh, 1fr)
-  ); /* Responsive grid with minimum column width */
-  gap: 10px; /* gap between grid items */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
 .entry-photo {
-  width: 100%;
   height: auto;
-  object-fit: contain; /* Scales the image while maintaining aspect ratio */
-  max-width: 100%; /* Prevents images from exceeding their natural size */
+  object-fit: contain; /* Maintain aspect ratio */
+  width: 50%;
 }
 
 .back-link {
   display: flex;
   justify-content: center;
+  text-decoration: none;
+}
+
+.back-link button {
+  background: var(--button-color-2);
+  color: var(--container-color);
+  font-weight: 500;
+  width: 20%;
+  margin: 25px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-link button:hover {
+  background: var(--button-hover-color-2);
 }
 
 @keyframes slideIn {

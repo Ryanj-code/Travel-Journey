@@ -64,7 +64,7 @@ const EditEntryForm = () => {
             content: entry.content,
             photos: entry.photos,
             createdAt: entry.createdAt,
-            updatedAt: Date.now(),
+            updatedAt: entry.updatedAt,
             userID: entry.userID,
           }}
           onSubmit={handleSaveEdit}

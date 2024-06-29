@@ -54,8 +54,8 @@ const EntryDetail = () => {
             />
           ))}
       </div>
-      <Link to="/" className="back-link">
-        Back to Entries
+      <Link to="/journal" className="back-link">
+        <button>Back to Entry List</button>
       </Link>
     </div>
   );

@@ -11,7 +11,7 @@ import EditEntryForm from "./pages/EditEntryForm";
 import EntryDetail from "./pages/EntryDetail";
 import "./App.css";
 
-axios.defaults.baseURL = "http://localhost:4000";
+axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
 axios.defaults.withCredentials = true;
 
 function App() {

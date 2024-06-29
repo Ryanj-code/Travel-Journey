@@ -1,0 +1,110 @@
+.entry-form {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1vh;
+  padding: 1vh 2vh;
+}
+
+label {
+  font-weight: bold;
+}
+
+.photo-inputs {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Adjust the gap between inputs */
+  margin-top: 2vh;
+}
+
+.photo-inputs input[type="text"] {
+  flex: 1; /* Grow to fill available space */
+  max-width: 100%; /* Set a maximum width for the file input */
+}
+
+.photo-inputs label {
+  display: inline-block; /* Ensure labels stay on one line */
+  white-space: nowrap; /* Prevent label text from wrapping */
+}
+
+.photo-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 5px; /* Adjust margin as needed */
+}
+
+.photo-buttons button {
+  padding: 10px;
+  border-radius: 10px;
+  width: 30%;
+  background-color: var(--button-color-2);
+  color: var(--container-color);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.photo-buttons button:hover {
+  background-color: var(--button-color-2);
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 1vh;
+  border-radius: 1vh;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  justify-self: center; /* Center the form fields horizontally */
+  resize: none; /* Disable textarea resizing */
+}
+
+.upload-label {
+  font-weight: normal;
+  padding: 1vh;
+  background-color: var(--button-color);
+  color: black;
+  border-radius: 1vh;
+  cursor: pointer;
+}
+
+.upload-input {
+  display: none;
+} /* Hide upload input (upload files button)*/
+
+.submit-button {
+  background-color: var(--button-color);
+  font-size: 2.5vh;
+  width: 100%;
+  border: none;
+  padding: 1vh;
+  border-radius: 1vh;
+  margin-top: 1vh;
+  cursor: pointer;
+  justify-self: center; /* Center the button horizontally */
+}
+
+.submit-button:hover {
+  background-color: var(--button-hover-color);
+}
+
+.icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--button-color-2);
+  border-radius: 50%; /* Makes the link circular */
+  margin-right: 1rem;
+}
+
+.icon-link:hover {
+  background-color: var(--button-hover-color-2);
+}
+
+.size-6 back {
+  width: 100%;
+  height: 100%;
+}

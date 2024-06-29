@@ -1,0 +1,70 @@
+.size-6 {
+  width: 4vh;
+  height: auto;
+}
+
+.header {
+  /* Stay at the top*/
+  position: fixed;
+  top: 0;
+  font-size: 2.5vh;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--background-color-2);
+  color: var(--header-text-color);
+  padding: 0 2vh;
+  right: 0;
+  left: 0;
+  z-index: 1000; /* Ensure the header is above other content */
+}
+
+.left-section,
+.right-section,
+.middle-section {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1vh;
+  margin: 1vh;
+}
+
+.right-section {
+  border: 0.2vh solid var(--border-color);
+  border-radius: 2vh;
+  padding: 1vh;
+}
+
+.middle-section {
+  padding-right: 10vh;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 3vh;
+  top: 10vh;
+  background-color: var(--container-color);
+  color: var(--header-text-color);
+  border: 0.2vh solid var(--border-color);
+  border-radius: 2vh;
+}
+
+.dropdown-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.dropdown-item:hover {
+  opacity: 0.5;
+  border-radius: 2vh;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,101 @@
+/* Css for Login/Signup */
+.form-wrapper {
+  background-image: url("../assets/wood_bg.png");
+  background-repeat: no-repeat;
+  background-size: cover; /* Ensures the background image covers the entire container */
+  min-height: 100vh; /* Makes sure the container covers the full viewport height */
+}
+
+.form-container-login {
+  font-size: 3vh;
+  color: var(--text-color-2);
+  font-weight: 500;
+  max-width: 100vh;
+  margin: auto;
+  padding: 2vh;
+  border-radius: 1vh;
+  background-color: transparent;
+  -ms-transform: translateY(70%);
+  transform: translateY(70%);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.form-container-signup {
+  font-size: 3vh;
+  color: var(--text-color-2);
+  font-weight: 500;
+  max-width: 100vh;
+  margin: auto;
+  padding: 2vh;
+  border-radius: 1vh;
+  background-color: transparent;
+  -ms-transform: translateY(60%);
+  transform: translateY(60%);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.form-title {
+  display: flex;
+  justify-content: center;
+  padding: 1vh;
+  margin-bottom: 1vh;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-fields label {
+  margin-bottom: 1vh;
+}
+
+.form-fields input[type="text"],
+.form-fields input[type="email"],
+.form-fields input[type="password"] {
+  padding: 1.5vh;
+  margin-bottom: 2vh;
+  border: 0.2vh solid #ccc;
+  border-radius: 2vh;
+  box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+}
+
+.form-fields button {
+  font-size: 2.5vh;
+  padding: 1.5vh;
+  border: none;
+  border-radius: 2vh;
+  background-color: var(--button-color);
+  color: var(--text-header-color);
+  cursor: pointer;
+}
+
+.form-fields button:hover {
+  background-color: var(--button-hover-color);
+}
+
+.options-container {
+  font-size: 2vh;
+  display: flex;
+  justify-content: center;
+  padding: 1vh;
+  gap: 0.5vh;
+}
+
+.options-item-link {
+  text-decoration: none;
+  color: var(--button-color);
+}
+
+.options-item-link:hover {
+  color: var(--button-hover-color);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

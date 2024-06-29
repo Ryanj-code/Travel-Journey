@@ -26,7 +26,7 @@ app.use(
 mongoose.connect(process.env.MONGO_URL);
 
 app.get("/test", (req, res) => {
-  res.json("test ok 6/26");
+  res.json("Test Server OK");
 });
 
 app.post("/signup", async (req, res) => {
@@ -52,7 +52,7 @@ app.post("/signup", async (req, res) => {
           .cookie("token", token, {
             httpOnly: true, // ensures the cookie is not accessible via JavaScript, enhancing security
             secure: true, // ensures the cookie is sent over HTTPS only
-            sameSite: "strict", // helps prevent CSRF attacks by ensuring the cookie is sent only in a first-party context
+            sameSite: "None", // helps prevent CSRF attacks by ensuring the cookie is sent only in a first-party context
           })
           .status(201)
           .json(userDoc);
@@ -85,8 +85,8 @@ app.post("/login", async (req, res) => {
             res
               .cookie("token", token, {
                 httpOnly: true,
-                secure: true,
-                sameSite: "strict",
+                secure: true, // Ensure cookie is sent only over HTTPS
+                sameSite: "None",
               })
               .json(userDoc);
           } // callback function
